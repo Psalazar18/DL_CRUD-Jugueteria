@@ -11,6 +11,10 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 import vuetify from './plugins/vuetify';
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI);
 Vue.use(BootstrapVue);
 
 import { library } from '@fortawesome/fontawesome-svg-core'

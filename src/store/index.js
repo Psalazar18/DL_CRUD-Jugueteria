@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { db } from "../main";
-//import firebase from 'firebase'
+import router from '../router/index';
 
 Vue.use(Vuex)
 
@@ -12,7 +12,12 @@ export default new Vuex.Store({
   getters: {
     traerJuguetes(state){
       return state.juguetes
-    }
+    },
+    jueguetesConStock: state => {
+      return state.juguetes.filter((juguetes)=>{
+      return juguetes.Stock > 0
+      })
+    },
   },
   mutations: {
     mutarJuguetes(state,array){
@@ -26,25 +31,43 @@ export default new Vuex.Store({
         respuesta.forEach(element =>{
           array.push({
             id: element.id,
-            codigo: element.data().Codigo,
-            nombre: element.data().Nombre,
-            stock: element.data().Stock,
-            precio: element.data().Precio,
+            Codigo: element.data().Codigo,
+            Nombre: element.data().Nombre,
+            Stock: element.data().Stock,
+            Precio: element.data().Precio,
           })
         });
         commit('mutarJuguetes',array);
       });
     },
-    // Editing(context, data){
-    //   db.collection("juguetes").doc(data.id).update({
-    //     codigo: data.Codigo,
-    //     nombre: data.Nombre,
-    //     stock: data.Stock,
-    //     precio: data.Precio,
-    //     id: data.id
-    //   }).then(()=>{
-    //     console.log('editado')
-    //   })
-    // },
+    addingJuguetes(context, data){
+      db.collection("juguetes").add({
+        Codigo: data.Codigo,
+        Nombre: data.Nombre,
+        Stock: data.Stock,
+        Precio: data.Precio,
+      }).then(resp=>{
+        console.log(resp);
+      })
+      console.log(data)
+    },
+    eliminarJuguete(context,id){
+      db.collection('juguetes').doc(id).delete().then(()=>{
+      }).catch(error=>{
+        console.log(error);
+      })
+    },
+    editandoJuguetes(context,data){
+      db.collection("juguetes").doc(data.id).update({
+        Nombre: data.Nombre,
+        Stock: data.Stock,
+        Precio: data.Precio,
+      }).then(()=>{
+        setTimeout(()=>{
+          router.push('/list');
+        },1000);
+      })
+    }
+
   },
 })

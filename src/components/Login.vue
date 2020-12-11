@@ -1,7 +1,7 @@
 <template>
   <v-app class="text-center container">
     <h1 class="my-6 display-4">Log into your account</h1>
-        <v-btn class="mt-5" x-large type="button" color="success" @click="google">Google</v-btn>
+        <v-btn class="mt-5" x-large type="button" color="success" @click="google">With Google</v-btn>
   </v-app>
 </template>
 

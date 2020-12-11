@@ -25,6 +25,22 @@ const routes = [
     meta:{
       login: true
     }
+  },
+  {
+    path: '/add',
+    name: 'Agregar',
+    component: () => import('../views/Agregar.vue'),
+    meta:{
+      login: true
+    }
+  },
+  {
+    path: '/edit/:id',
+    name: 'Editar',
+    component: () => import('../views/Editar.vue'),
+    meta:{
+      login: true
+    }
   }
 ]
 
