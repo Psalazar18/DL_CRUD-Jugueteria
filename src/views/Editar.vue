@@ -59,7 +59,7 @@ export default {
     },
     methods: {
         edit(){
-            if(this.Editing.id && this.Editing.Nombre && this.Editing.Stock && this.Editing.Precio){
+            if(this.Editing.id && this.Editing.Nombre && this.Editing.Stock && this.Editing.Stock > 0 && this.Editing.Precio){
                 this.$confirm('¿Quiere editar este juguete?', 'Warning', {
                 confirmButtonText: 'OK',
                 cancelButtonText: 'Cancel',
@@ -77,6 +77,8 @@ export default {
                 });
                 this.$router.push('/list')
                 });                    
+            }else{
+                alert('El stock debe ser un número positivo')
             }
         },
         goBack(){

@@ -12,7 +12,7 @@
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item href="#" @click="out">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -22,11 +22,22 @@
 </template>
 
 <script>
-
+import firebase from 'firebase'
 export default {
   name: 'App',
   mounted() {
     this.$store.dispatch('traerData'); 
+  },
+  methods: {
+     out(){
+      let _this = this;
+      firebase.auth().signOut().then(function() {
+        console.log('Sign-out successful.')
+        _this.$router.replace({name: 'Login'})
+      }).catch(function(error) {
+        console.log(error)
+      });
+    },
   },
 }
 </script>

@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         add(){
-            if(this.Adding.Codigo && this.Adding.Nombre && this.Adding.Stock && this.Adding.Precio){
+            if(this.Adding.Codigo && this.Adding.Nombre && this.Adding.Stock && this.Adding.Stock > 0 && this.Adding.Precio){
                 this.$confirm('¿Quiere agregar este juguete?', 'Warning', {
                 confirmButtonText: 'OK',
                 cancelButtonText: 'Cancel',
@@ -58,6 +58,8 @@ export default {
                 });
                 this.$router.push('/list')
                 });                    
+            }else{
+                alert('El stock debe ser un número positivo')
             }
         },
         goBack(){

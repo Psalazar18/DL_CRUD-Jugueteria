@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container">     
         <h1 class="display-2 text-center">Juguetes</h1>
         <div class="text-center" v-if="traerJuguetes == ''">
             <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner"></b-spinner>
